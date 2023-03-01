@@ -1,1 +1,13 @@
+:root {
+  background: linear-gradient(#3c5aff, #52f2fd);
+  --color-background: linear-gradient(#3c5aff, #52f2fd);
+  --color-main: rgba(255, 255, 255, 0.6);
+}
 
+html {
+  height: 100%;
+}
+
+body {
+  color: var(--color-main);
+}
