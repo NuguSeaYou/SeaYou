@@ -1,0 +1,10 @@
+.start-button {
+  font-size: 4rem;
+  border: none;
+  color: var(--color-main);
+  background-color: inherit;
+}
+
+.start-button:hover {
+  color: white;
+}
