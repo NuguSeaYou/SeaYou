@@ -1,11 +1,20 @@
 import classes from "../styles/MainPage.module.css";
 import Button from "../UI/Button";
+import firstTutorial from "../maps/FirstTutorial";
 
-export default function MainPage() {
+type MainPageProps = {
+  onStart: React.MouseEventHandler<HTMLButtonElement>;
+};
+
+export default function MainPage(props: MainPageProps) {
   return (
     <main>
       <h1 className={classes.title}>NuguSeaYou</h1>
-      <Button className="start-button" content="시작하기" />
+      <Button
+        onClickEvent={props.onStart}
+        className="start-button"
+        content="시작하기"
+      />
     </main>
   );
 }

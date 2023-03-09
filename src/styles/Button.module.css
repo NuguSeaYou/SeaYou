@@ -8,3 +8,15 @@
 .start-button:hover {
   color: white;
 }
+
+.game-start-button {
+  margin-top: 4rem;
+  font-size: 2rem;
+  border: none;
+  color: var(--color-main);
+  background-color: inherit;
+}
+
+.game-start-button:hover {
+  color: white;
+}

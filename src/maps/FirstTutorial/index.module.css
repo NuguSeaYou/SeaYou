@@ -1,0 +1,9 @@
+.canvasWrapper {
+  display: flex;
+  flex-direction: column;
+  height: 80%;
+}
+
+canvas {
+  margin: 12rem auto;
+}
