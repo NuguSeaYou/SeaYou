@@ -9,5 +9,10 @@ html {
 }
 
 body {
+  height: 100%;
   color: var(--color-main);
+}
+
+#root {
+  height: 100%;
 }
