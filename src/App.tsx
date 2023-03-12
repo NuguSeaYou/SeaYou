@@ -2,7 +2,8 @@ import "./App.css";
 import { useState } from "react";
 import MainPage from "./pages/MainPage";
 // import EndPage from "./pages/EndPage";
-import FirstTutorial from "./maps/FirstTutorial";
+// import FirstTutorial from "./maps/FirstTutorial";
+import GamePage from "./pages/GamePage";
 
 function App() {
   const [isStart, setStart] = useState<boolean>(false);
@@ -13,7 +14,8 @@ function App() {
 
   return (
     <>
-      {isStart ? <FirstTutorial /> : <MainPage onStart={startHandler} />}
+      {/* {isStart ? <FirstTutorial /> : <MainPage onStart={startHandler} />} */}
+      {isStart ? <GamePage /> : <MainPage onStart={startHandler} />}
     </>
   );
 }
