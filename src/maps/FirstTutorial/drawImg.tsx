@@ -19,8 +19,5 @@ export default function drawImg({
   img.src = newImage;
   const canvasCur = canvas.current as HTMLCanvasElement;
   const context = canvasCur.getContext("2d");
-  // img.onload = function () {
-  //   context?.drawImage(img, x, y, 50, 50);
-  // };
   context?.drawImage(img, x, y, w, h);
 }
