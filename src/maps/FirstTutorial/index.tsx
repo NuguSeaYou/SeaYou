@@ -3,14 +3,8 @@ import drawImg from "./drawImg";
 import classes from "./index.module.css";
 import Button from "../../UI/Button";
 import { tutorialMap1 } from "../../utils/maps";
-
-const gameBoard = [
-  [3, 3, 3, 3, 3, 3, 3, 3, 3],
-  [3, 0, 0, 0, 2, 0, 0, 0, 3],
-  [3, 0, 1, 0, 2, 0, 4, 0, 3],
-  [3, 0, 0, 0, 2, 0, 0, 0, 3],
-  [3, 3, 3, 3, 3, 3, 3, 3, 3],
-];
+import MoveCount from "../../UI/MoveCount";
+import Images from "../../utils/images";
 
 type contentType = {
   id: number;
@@ -25,6 +19,7 @@ type positionType = {
 
 export default function FirstTutorial() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const countRef = useRef<number>(0);
   const [position, setPosition] = useState<positionType>({
     x: tutorialMap1.userPosition[0],
     y: tutorialMap1.userPosition[1],
@@ -38,6 +33,37 @@ export default function FirstTutorial() {
     setStartGame(true);
   };
 
+  const restartHandler = () => {
+    const canvas = canvasRef.current;
+    const context = canvas && canvas.getContext("2d");
+    
+    if (!canvas || !context) {
+      return;
+    };
+
+    setBoard(tutorialMap1.map);
+    setPosition({
+      x: tutorialMap1.userPosition[0],
+      y: tutorialMap1.userPosition[1]
+    })
+    setHistory([]);
+
+    countRef.current = 0;
+    canvas.focus();
+  };
+
+  const initCanvas = (canvas: HTMLCanvasElement) => {
+    canvas.width = tutorialMap1.width;
+    canvas.height = tutorialMap1.height;
+    canvas.style.background = `url(${Images.background.src})`;
+  };
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    canvas && initCanvas(canvas);
+    canvas?.focus();
+  }, []);
+
   useEffect(() => {
     const newBoard = [...board];
     for (let i = 0; i < newBoard.length; i++) {
@@ -49,6 +75,7 @@ export default function FirstTutorial() {
     }
     newBoard[position.y][position.x] = 1;
     setBoard(newBoard);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [position]);
 
   useEffect(() => {
@@ -120,7 +147,9 @@ export default function FirstTutorial() {
 
   const characterHandler = (event: React.KeyboardEvent<HTMLCanvasElement>) => {
     if (onControl && (event.key === "z" || event.key === "Z")) {
-      if (history) {
+      if (history.length >= 1) {
+        console.log(history)
+        countRef.current -= 1;
         const recentHistory = history.pop();
         if ("ArrowUp" === recentHistory) moveHandler("ArrowDown", true);
         if ("ArrowDown" === recentHistory) moveHandler("ArrowUp", true);
@@ -131,7 +160,13 @@ export default function FirstTutorial() {
     if (event.key === "Control") {
       setOnControl(true);
     }
+
+    if (countRef.current >= 20) {
+      return;
+    };
+
     if (direction[event.key]) {
+      countRef.current += 1;
       moveHandler(event.key);
     }
   };
@@ -143,12 +178,16 @@ export default function FirstTutorial() {
         className="game-start-button"
         content="시작하기"
       />
+      <MoveCount initCount={20} moveCount={countRef.current}/>
+      <Button
+        onClickEvent={restartHandler}
+        className={`game-restart-button${(countRef.current >= 20 ? "-on" : "")}`}
+        content="다시하기"
+      />
       <canvas
         onKeyDown={characterHandler}
         onKeyUp={controlHandler}
         ref={canvasRef}
-        width={board[0].length * 50}
-        height={board.length * 50}
         tabIndex={0}
       />
     </div>

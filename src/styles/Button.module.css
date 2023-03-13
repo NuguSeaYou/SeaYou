@@ -20,3 +20,29 @@
 .game-start-button:hover {
   color: white;
 }
+
+.game-restart-button {
+  font-size: 1rem;
+  font-weight: bold;
+  width: 100px;
+  border-radius: 15px;
+  background-color: white;
+}
+
+.game-restart-button-on {
+  font-size: 1rem;
+  font-weight: bold;
+  width: 100px;
+  border-radius: 15px;
+  background-color: darkorange;
+}
+
+.game-restart-button:hover {
+  cursor: pointer;
+  color: red;
+}
+
+.game-restart-button-on:hover {
+  cursor: pointer;
+  color: red;
+}
