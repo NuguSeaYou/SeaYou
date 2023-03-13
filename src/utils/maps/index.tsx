@@ -11,17 +11,17 @@ type valueType = {
 const imgSize = 50;
 
 const contents: contentsType = {
-  Background: { id: 0, imgURL: "/", imgSize },
-  User: { id: 1, imgURL: "/baba.png", imgSize },
-  Brick: { id: 2, imgURL: "/brick.png", imgSize },
-  Rock: { id: 3, imgURL: "/rock.png", imgSize },
-  Flag: { id: 4, imgURL: "/flag.png", imgSize },
+  Background: { id: 0, imgURL: "/images/bg.png", imgSize },
+  User: { id: 1, imgURL: "/images/baba.png", imgSize },
+  Brick: { id: 2, imgURL: "/images/brick.png", imgSize },
+  Rock: { id: 3, imgURL: "/images/rock.png", imgSize },
+  Flag: { id: 4, imgURL: "/images/flag.png", imgSize },
 };
 
 export const tutorialMap1 = {
   width: 9 * imgSize,
   height: 5 * imgSize,
-  userPostion: [2, 2],
+  userPosition: [2, 2],
   contents: { ...contents },
   map: [
     [3, 3, 3, 3, 3, 3, 3, 3, 3],
